@@ -28,6 +28,17 @@ jobs:
           unzip -q "$ARCHIVE" -d project
 
       - name: Set up Java 17
+            - name: Generate Debug Keystore
+        run: |
+          keytool -genkeypair -v \
+            -keystore project/debug.keystore \
+            -storepass android \
+            -alias androiddebugkey \
+            -keypass android \
+            -keyalg RSA \
+            -keysize 2048 \
+            -validity 10000 \
+            -dname "CN=Android Debug,O=Android,C=US"
         uses: actions/setup-java@v4
         with:
           distribution: temurin
