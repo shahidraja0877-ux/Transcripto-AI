@@ -38,7 +38,7 @@ jobs:
         with:
           gradle-version: '8.13'
 
-      - name:        - name: Set up Android SDK
+      - name: Set up Android SDK
         uses: android-actions/setup-android@v3
         with:
           packages: 'platform-tools'
