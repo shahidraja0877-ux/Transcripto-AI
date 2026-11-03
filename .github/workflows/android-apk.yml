@@ -28,7 +28,11 @@ jobs:
           unzip -q "$ARCHIVE" -d project
 
       - name: Set up Java 17
-            - name: Generate Debug Keystore
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+              - name: Generate Debug Keystore
         run: |
           keytool -genkeypair -v \
             -keystore project/debug.keystore \
@@ -39,11 +43,6 @@ jobs:
             -keysize 2048 \
             -validity 10000 \
             -dname "CN=Android Debug,O=Android,C=US"
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '17'
-
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
